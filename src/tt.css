@@ -1,0 +1,13 @@
+.root{
+    -fx-background-color: #66ff99;
+    -fx-text-color: #003300;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+
+
+
+}
+.button{
+
+    -fx-background-color: #999966;
+ }
