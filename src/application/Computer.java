@@ -1,7 +1,6 @@
 package application;
 
 import data.Line;
-
 import java.util.Collection;
 
 /**
@@ -20,4 +19,3 @@ public class Computer implements Controller {
 
 
 }
-

@@ -1,28 +1,19 @@
 package data;
 
 public class Cable {
-    private String Name;
-    private String Type;
+    private final String name;
+    private final String type;
 
     public Cable(String name, String type) {
-        Name = name;
-        Type = type;
+        this.name = name;
+        this.type = type;
     }
 
     public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
+        return name;
     }
 
     public String getType() {
-        return Type;
+        return type;
     }
-
-    public void setType(String type) {
-        Type = type;
-    }
-
 }
