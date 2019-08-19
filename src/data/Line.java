@@ -1,4 +1,4 @@
-package sample;
+package data;
 /**
 * ovdje javadoc: šta je ova klasa i zašto postoji
 */

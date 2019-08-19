@@ -1,4 +1,4 @@
-package sample;
+package data;
 
 public class Cable {
     private String Name;
