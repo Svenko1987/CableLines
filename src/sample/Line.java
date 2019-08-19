@@ -1,5 +1,7 @@
 package sample;
-
+/**
+* ovdje javadoc: šta je ova klasa i zašto postoji
+*/
 public class Line {
     private String lineName;
     private String linePurpose;
