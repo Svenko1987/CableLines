@@ -12,11 +12,17 @@ import java.util.Collection;
  * </p>
  */
 
+@SuppressWarnings ("SpellCheckingInspection")
 public class Computer implements Controller {
 
 
   @Override
   public int sumSameFloor(Collection<Line> lines, int floor) {
+    // todo Svenko1987 : ovaj metod možeš pojednostaviti ovako
+    // Ako je kolekcija prazna ili je zadat sprat na kojem nema kablova, vrati 0;
+    if (lines.isEmpty() || lines.stream().noneMatch(line -> line.getFloor() != floor)) return 0;
+
+
     int sum = 0;
     if (lines.isEmpty() == true) {
 
@@ -27,7 +33,6 @@ public class Computer implements Controller {
 
     }
     return sum;
-
   }
 
   @Override

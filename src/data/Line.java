@@ -10,6 +10,10 @@ public class Line {
     private int floor;
 
     public Line(String lineName, Cable cable, int amount, int floor) {
+        /*
+         * Zamisli da je amount negativan.
+         * Hoćeš li baciti neki Exception (npr. IllegalArgumentException) ili ispraviti vrijednost na pozitivno?
+         */
         this.lineName = lineName;
         this.cable = cable;
         this.amount = amount;
