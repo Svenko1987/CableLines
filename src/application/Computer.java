@@ -1,6 +1,8 @@
 package application;
 
+import data.Cable;
 import data.Line;
+
 import java.util.Collection;
 
 /**
@@ -12,10 +14,25 @@ import java.util.Collection;
 
 public class Computer implements Controller {
 
+
   @Override
-  public int sumSameFloor(Collection<Line> lines) {
-    return -1;
+  public int sumSameFloor(Collection<Line> lines, int floor) {
+    int sum = 0;
+    if (lines.isEmpty() == true) {
+
+    }
+    else {
+
+      sum = lines.stream().filter(line -> line.getFloor()==floor).map(Line::getAmount).reduce(sum, (a, b) -> a + b);
+
+    }
+    return sum;
+
   }
 
+  @Override
+  public void addToCables(Collection<Cable> cables, Cable newCable) {
+    cables.add(newCable);
 
+  }
 }
