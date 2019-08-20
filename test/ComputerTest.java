@@ -1,5 +1,6 @@
 import application.Computer;
 import application.Controller;
+import data.Cable;
 import data.Line;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +23,12 @@ class ComputerTest {
 
   @Test
   void sumSameFloorTest() {
-    assertEquals(0, c.sumSameFloor(lines)); // todo Sven : sredi metod sumSameFloor da "položi" slučaj kad je list prazna
+    Cable cable=new Cable("E90","3x2.5");
+    Line line=new Line("linija1", cable,1,1);
+    Line line2=new Line("linija1", cable,1,2);
+    lines.add(line);
+    lines.add(line2);
+    assertEquals(1, c.sumSameFloor(lines,1)); // todo Svden : sredi metosumSameFloor da "položi" slučaj kad je list prazna
 
   }
 
