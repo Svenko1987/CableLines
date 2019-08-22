@@ -1,62 +1,76 @@
 package data;
+
+
+import application.Computer;
+
 /**
-* ovdje javadoc: šta je ova klasa i zašto postoji
-*/
+ * Object Line that represents line on some floor that have some purpose
+ */
 public class Line {
-    private String lineName;
-    private String linePurpose;
-    private Cable cable;
-    private int amount;
-    private int floor;
+  private String lineName;
+  private String linePurpose;
+  private Cable cable;
+  private int amount;
+  private int floor;
 
-    public Line(String lineName, Cable cable, int amount, int floor) {
-        /*
-         * Zamisli da je amount negativan.
-         * Hoćeš li baciti neki Exception (npr. IllegalArgumentException) ili ispraviti vrijednost na pozitivno?
-         */
-        this.lineName = lineName;
-        this.cable = cable;
-        this.amount = amount;
-        this.floor = floor;
-    }
 
-    public void setLinePurpose(String linePurpose) {
-        this.linePurpose = linePurpose;
-    }
+  Computer c=new Computer();
 
-    public String getLinePurpose() {
-        return linePurpose;
-    }
+  public Line(String lineName, String linePurpose, Cable cable, int amount, int floor) {
 
-    public String getLineName() {
-        return lineName;
-    }
 
-    public void setLineName(String lineName) {
-        this.lineName = lineName;
+    if (lineName == null
+        ^ cable == null
+        ^ amount <= 0) {
+      throw new IllegalArgumentException("Bad entry");
     }
+    else {
 
-    public Cable getCable() {
-        return cable;
+      this.lineName = lineName;
+      this.linePurpose = linePurpose;
+      this.cable = cable;
+      this.amount = amount;
+      this.floor = floor;
     }
+  }
 
-    public void setCable(Cable cable) {
-        this.cable = cable;
-    }
+  public void setLinePurpose(String linePurpose) {
+    this.linePurpose = linePurpose;
+  }
 
-    public int getAmount() {
-        return amount;
-    }
+  public String getLinePurpose() {
+    return linePurpose;
+  }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
+  public String getLineName() {
+    return lineName;
+  }
 
-    public int getFloor() {
-        return floor;
-    }
+  public void setLineName(String lineName) {
+    this.lineName = lineName;
+  }
 
-    public void setFloor(int floor) {
-        this.floor = floor;
-    }
+  public Cable getCable() {
+    return cable;
+  }
+
+  public void setCable(Cable cable) {
+    this.cable = cable;
+  }
+
+  public int getAmount() {
+    return amount;
+  }
+
+  public void setAmount(int amount) {
+    this.amount = amount;
+  }
+
+  public int getFloor() {
+    return floor;
+  }
+
+  public void setFloor(int floor) {
+    this.floor = floor;
+  }
 }

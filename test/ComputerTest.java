@@ -49,11 +49,10 @@ class ComputerTest {
     lines.add(line4); // todo Svenko1987 : problem 2, dodao sam jedan te isti kabal dva puta, i dva puta ga je računao
     assertEquals(150, computer.sumSameFloor(lines,1));
 
-    lines.add(new Line("invalid", "rasvjeta", cable, -1000, 1));
+    // lines.add(new Line("invalid", "rasvjeta", cable, -1000, 1));
     // todo Svenko1987 : problem 3, kabal negativne dužine
-    // pogledat cu sutra
-    //assertThrows(IllegalArgumentException.class,);
-    //assertEquals(100, computer.sumSameFloor(lines,1));
+    // assertThrows(IllegalArgumentException.class,() ->{Sta ide ovdje} );
+
   }
 
   @SuppressWarnings ("UnsecureRandomNumberGeneration")
