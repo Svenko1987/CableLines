@@ -9,7 +9,7 @@ public class Line {
     private int amount;
     private int floor;
 
-    public Line(String lineName, Cable cable, int amount, int floor) {
+    public Line(String lineName, @NotNull Cable cable, int amount, int floor) {
         /*
          * Zamisli da je amount negativan.
          * Hoćeš li baciti neki Exception (npr. IllegalArgumentException) ili ispraviti vrijednost na pozitivno?
