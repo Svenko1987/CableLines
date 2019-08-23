@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * <p>
@@ -19,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 @SuppressWarnings ({"MessageMissingOnJUnitAssertion", "SpellCheckingInspection", "MagicNumber"})
 class ComputerTest {
-  private final Cable cable = new Cable("E90","3x2.5");
+  private final Cable cable = new Cable("E90", "3x2.5");
   private Controller computer;
   private List<Line> lines;
 
@@ -35,23 +36,31 @@ class ComputerTest {
 
   @Test
   void sumSameFloorTest() {
-    Cable cable=new Cable("E90","3x2.5");
-    Line line=new Line("linija1", "rasvjeta",cable,1,1);
-    Line line2=new Line("linija1", "rasvjeta",cable,1,2);
+    Cable cable = new Cable("E90", "3x2.5");
+    Line line = new Line("linija1", "rasvjeta", cable, 1, 1);
+    Line line2 = new Line("linija1", "rasvjeta", cable, 1, 2);
     lines.add(line);
     lines.add(line2);
-    assertEquals(1, computer.sumSameFloor(lines,1));
-    Line line3 = new Line("linija1", "rasvjeta",cable, 99, 1);
+    assertEquals(1, computer.sumSameFloor(lines, 1));
+    Line line3 = new Line("linija1", "rasvjeta", cable, 99, 1);
     lines.add(line3);
-    assertEquals(100, computer.sumSameFloor(lines,1));
-    assertEquals(1, computer.sumSameFloor(lines,2));
-    Line line4 = new Line("linija1", "rasvjeta",cable, 50, 1);
+    assertEquals(100, computer.sumSameFloor(lines, 1));
+    assertEquals(1, computer.sumSameFloor(lines, 2));
+    Line line4 = new Line("linija1", "rasvjeta", cable, 50, 1);
     lines.add(line4); // todo Svenko1987 : problem 2, dodao sam jedan te isti kabal dva puta, i dva puta ga je računao
-    assertEquals(150, computer.sumSameFloor(lines,1));
+    assertEquals(150, computer.sumSameFloor(lines, 1));
 
-    // lines.add(new Line("invalid", "rasvjeta", cable, -1000, 1));
-    // todo Svenko1987 : problem 3, kabal negativne dužine
-    // assertThrows(IllegalArgumentException.class,() ->{Sta ide ovdje} );
+
+  }
+
+  @Test
+  void illegalEntryTest() {
+    Line line5 = new Line("linija1", "rasvjeta", cable, -1, 1);
+    Exception e = assertThrows(IllegalArgumentException.class, () -> {
+      lines.add(line5);
+    });
+    assertEquals("Bad entry", e.getMessage());
+
 
   }
 
@@ -60,7 +69,7 @@ class ComputerTest {
   void aMillionCables() {
     Random r = new Random();
     for (int i = 0; i < 1000000; i++) {
-      lines.add(new Line("Line" + i,"rasvjeta", cable, r.nextInt(100)+1, r.nextInt(10)));
+      lines.add(new Line("Line" + i, "rasvjeta", cable, r.nextInt(100) + 1, r.nextInt(10)));
     }
     assertEquals(1000000, lines.size());
   }
