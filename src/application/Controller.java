@@ -30,7 +30,7 @@ public interface Controller {
 
   /**
    *
-   * Getting summs of wanted type
+   * Getting sums of wanted type
    */
   int sumSameFloor(Collection<Line> lines,int floor);
   int sumSameCable(Collection<Line> lines, Cable cable);
