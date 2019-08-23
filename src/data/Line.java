@@ -18,10 +18,10 @@ public class Line {
 
   public Line(String lineName, String linePurpose, Cable cable, int amount, int floor) {
 
-
+    // logički operator ^ je XOR, || je OR; razlika je što ^ znači "ako je jedno I SAMO JEDNO od ovog true", a || znači "ako je bilo šta true"
     if (lineName == null
-        ^ cable == null
-        ^ amount <= 0) {
+        || cable == null
+        || amount <= 0) {
       throw new IllegalArgumentException("Bad entry");
     }
     else {

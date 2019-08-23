@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * <p>
@@ -35,7 +36,7 @@ class ComputerTest {
 
   @Test
   void sumSameFloorTest() {
-    Cable cable=new Cable("E90","3x2.5");
+//    Cable cable=new Cable("E90","3x2.5"); // ovo možeš izbrisati jer gore imaš čitav member
     Line line=new Line("linija1", "rasvjeta",cable,1,1);
     Line line2=new Line("linija1", "rasvjeta",cable,1,2);
     lines.add(line);
@@ -63,6 +64,17 @@ class ComputerTest {
       lines.add(new Line("Line" + i,"rasvjeta", cable, r.nextInt(100)+1, r.nextInt(10)));
     }
     assertEquals(1000000, lines.size());
+  }
+
+  @Test
+  void throwException() {
+    /*
+    * Kako radi assertThrows?
+    * Dva parametra: podklasa klase Exception koju očekujemo i lamda (to je ovo "() ->") koja je u anonimna implementacija interfejsa Runnable.
+    * Ta lamda treba da izvede neki kod koji će baciti ranije definisani Exception.
+    * */
+    assertThrows(IllegalArgumentException.class, () -> new Line("invalid", "invalid", null, 1, 1));
+    assertThrows(IllegalArgumentException.class, () -> new Line("invalid", "invalid", cable, -1, 1));
   }
 
 }
