@@ -9,20 +9,14 @@ public interface Controller {
 
 
 
-  /**
-   *Cable manipulation
-   */
-  boolean isItValidCable(String name, String type);
-  void addToCables(Collection <Cable> cables, Cable newCable);
-  void selectCable(Collection<Cable> cables, Cable enteredCable);
-  void removeCable(Collection<Cable> cables, Cable selectedCable);
-  void updateCable(Collection<Cable> cables, Cable updatedCable);
+
 
 
   /**
    *Line manipulation
    */
-  boolean isItValidLine(String lineName, Cable cable, int amount,int floor);
+  boolean isItValidLine(String lineName, Cable cable, int amount);
+
   void addToLines(Collection<Line> lines, Line line);
   Line selectLine(Collection<Line> lines, Line enteredLine);
   void removeLine(Collection<Line> lines, Line selectedLine);
@@ -30,7 +24,9 @@ public interface Controller {
 
   /**
    *
-   * Getting sums of wanted type
+   * Getting sums of wanted type and sums off all
+   *
+   *
    */
   int sumSameFloor(Collection<Line> lines,int floor);
   int sumSameCable(Collection<Line> lines, Cable cable);

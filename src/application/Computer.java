@@ -14,54 +14,21 @@ public class Computer implements Controller {
 
 
   /**
-   * Cable manipulation
-   */
-  @Override
-  public boolean isItValidCable(String name, String type) {
-    return !(name == null || type == null);
-
-  }
-
-  @Override
-  public void addToCables(Collection<Cable> cables, Cable newCable) {
-    cables.add(newCable);
-
-
-  }
-
-  @Override
-  public void selectCable(Collection<Cable> cables, Cable selectedCable) {
-    throw new UnsupportedOperationException("snh - not implemented yet: selectCable");
-  }
-
-  @Override
-  public void removeCable(Collection<Cable> cables, Cable selectedCable) {
-    if (isItValidCable(selectedCable.getName(), selectedCable.getType())) {
-
-    }
-  }
-
-  @Override
-  public void updateCable(Collection<Cable> cables, Cable updatedCable) {
-    throw new UnsupportedOperationException("snh - not implemented yet: updateCable");
-  }
-
-
-  /**
    * Line manipulation
    */
+
+
+
   @Override
-  public boolean isItValidLine(String lineName, Cable cable, int amount, int floor) {
-    return !(lineName == null || cable == null || amount <= 0);
-
+  public boolean isItValidLine(String lineName, Cable cable, int amount) {
+    return !(lineName==null || cable.equals(null) || amount<=0);
   }
-
 
   @Override
   public void addToLines(Collection<Line> lines, Line line) {
 
     if (lines.stream().anyMatch(line1 -> line1.getLineName().equals(line.getLineName()))) {
-      lines.stream().filter(line1 -> line1.getLineName().equals(line.getLineName())).map(Line::getAmount).reduce((a, b) -> a + b);
+      lines.stream().filter(line1 -> line1.getLineName().equals(line.getLineName()) && line1.getFloor() == line.getFloor()).map(Line::getAmount).reduce((a, b) -> a + b);
 
     }
     else
@@ -82,9 +49,10 @@ public class Computer implements Controller {
   }
 
   @Override
-  public void updateLine(Collection<Line> lines,Line selectedline, Line updatedLine) {
-    if (isItValidLine(updatedLine.getLineName(), updatedLine.getCable(), updatedLine.getAmount(), updatedLine.getFloor()))
-    lines.stream().filter(line -> line.equals(selectedline)).findAny().ifPresent(line -> line=updatedLine);
+  public void updateLine(Collection<Line> lines, Line selectedline, Line updatedLine) {
+    if (isItValidLine(updatedLine.getLineName(),updatedLine.getCable(), updatedLine.getAmount())) {
+      lines.stream().filter(line -> line.equals(selectedline)).findAny().ifPresent(line -> line = updatedLine);
+    }
   }
 
   /**
@@ -96,15 +64,19 @@ public class Computer implements Controller {
     if (lines.isEmpty() || lines.stream().noneMatch(line -> line.getFloor() != floor)) return 0;
     int sum = 0;
     if (lines.isEmpty() == true) {
+      new IllegalArgumentException("No entries");
     }
     else {
-      sum = lines.stream().filter(line -> line.getFloor() == floor).map(Line::getAmount).reduce(sum, (a, b) -> a + b);
+      sum = lines.stream().filter(line -> line.getFloor()==floor).map(Line::getAmount).reduce(sum, (a, b) -> a + b);
+      System.out.println("Sabralo"+sum+ lines.toString());
+
+
     }
     return sum;
   }
 
   @Override
-  public int sumSameCable(Collection<Line> lines, Cable cable) {
+  public int sumSameCable(Collection<Line> lines,  Cable cable) {
     int sum = 0;
     if (lines.isEmpty() == true) {
       throw new IllegalArgumentException("No entries");

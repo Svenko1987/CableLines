@@ -14,17 +14,17 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
  * </p>
  */
 @SuppressWarnings ("MessageMissingOnJUnitAssertion")
-class CableTypeTest {
+class CableTest {
 
   @Test
   void enumDemo() {
-    assertFalse(CableType.values().length < 1);
+    assertFalse(Cable.values().length < 1);
 
     // gle ovo jes' gotiva:
-    List<CableType> sviKablovi = Arrays.asList(CableType.values()); // svaki enum je automatski i niz svog sadržaja, taj niz možeš uzeti u listu/set i time raditi
+    List<Cable> sviKablovi = Arrays.asList(Cable.values()); // svaki enum je automatski i niz svog sadržaja, taj niz možeš uzeti u listu/set i time raditi
     assertFalse(sviKablovi.isEmpty());
 
-    for (CableType type : sviKablovi) {
+    for (Cable type : sviKablovi) {
       System.out.println("enum " + type + " ima string " + type.getName());
     }
   }

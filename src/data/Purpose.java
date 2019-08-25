@@ -1,12 +1,26 @@
 package data;
 
-/**
- * <p>
- * Author: Mirza S. / mirza.suljic.ba@gmail.com <br>
- * Date: 23.8.2019.
- * </p>
- */
-public enum Purpose {
 
-  LIGHTS, OUTLET, HEAVY_OUTLET
+public enum Purpose {
+  LIGHTS("Lights"),
+  OUTLET("Outlet"),
+  FIREALARM("Fire alarm"),
+  DATAFLOW("Data flow"),
+  VENTILATION("Ventilation"),
+  CONNECTION("Connection"),
+  POWERSUPLY("Pover suply"),
+  VIDEOSURVEILLANCE("Video surveillance");
+
+
+  private final String name;
+
+  Purpose(String name){
+    this.name=name;
+  }
+  public String getName(){
+    return name;
+  }
+
+
+
 }
