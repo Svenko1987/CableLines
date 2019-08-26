@@ -37,7 +37,15 @@ public class Line {
   @Override
   public boolean equals(Object obj) {
     // todo Svenko1987 : ovdje TI definiši kad su dvije linije jednake
-    return false;
+    if (obj == null) return false;
+
+    if (obj instanceof Line) {
+      Line other = (Line) obj;
+      // sad radiš sa other
+      return false;
+    } else {
+      return false;
+    }
   }
 
   public String getLinePurpose() {
