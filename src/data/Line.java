@@ -34,6 +34,11 @@ public class Line {
 
   }
 
+  @Override
+  public boolean equals(Object obj) {
+    // todo Svenko1987 : ovdje TI definiši kad su dvije linije jednake
+    return false;
+  }
 
   public String getLinePurpose() {
     return linePurpose.getName();
