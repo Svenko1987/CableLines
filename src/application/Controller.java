@@ -21,6 +21,8 @@ public interface Controller {
   Line selectLine(Collection<Line> lines, Line enteredLine);
   void removeLine(Collection<Line> lines, Line selectedLine);
   void updateLine(Collection<Line> lines, Line selectedLine, Line updatedLine);
+  int seeLine(Collection<Line>lines, Line line);
+  void trow();
 
   /**
    *

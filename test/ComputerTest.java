@@ -31,38 +31,77 @@ class ComputerTest {
 
   @Test
   void sumSameFloorTest() {
-    Cable cable=Cable.FLEXIBLE_3X15;
-    Purpose purpose=Purpose.LIGHTS;
-    Line line = new Line("32A", purpose,"Hodnik", cable, 2, 1);
-    Line line2 = new Line("32A", purpose,"Hodnik", cable, 5, 2);
-    computer.addToLines(lines,line);
+
+    Line line = new Line("32A", Purpose.LIGHTS, "Hodnik", Cable.FLEXIBLE_3X15, 2, 1);
+    Line line2 = new Line("37A", Purpose.LIGHTS, "Hodnik", Cable.FLEXIBLE_3X15, 5, 2);
+    Line line3 = new Line("14", Purpose.LIGHTS, "Hodnik", Cable.FLEXIBLE_3X15, 2, 1);
+    lines.add(line);
     lines.add(line2);
-    assertEquals(line,computer.selectLine(lines,line));
-
-    Line line3 = new Line("32A", purpose,"Hodnik", cable, 99, 1);
     lines.add(line3);
-    assertEquals(1, computer.sumSameFloor(lines, 2));
-   // assertEquals(1, computer.sumSameFloor(lines, 2));
-    Line line4 = new Line("32A", purpose,"Hodnik", cable, 50, 1);
-    lines.add(line4); // todo Svenko1987 : problem 2, dodao sam jedan te isti kabal dva puta, i dva puta ga je računao
-    //assertEquals(150, computer.sumSameFloor(lines, 1));
+    assertEquals(4,computer.sumSameFloor(lines,1));
+
+  }
+  @Test
+  void sumSameLineTest(){
+    Line line = new Line("32A", Purpose.LIGHTS, "Hodnik", Cable.FLEXIBLE_3X15, 2, 1);
+    Line line2 = new Line("32A", Purpose.LIGHTS, "Hodnik", Cable.FLEXIBLE_3X15, 5, 1);
+    lines.add(line);
+    lines.add(line2);
+    assertEquals(4,computer.seeLine(lines,line));
 
 
+  }
+  @Test
+  void deleteLineTest(){
+
+  }
+  @Test
+  void summAllBuildingTest(){
+
+    Line line = new Line("32A", Purpose.LIGHTS, "Hodnik", Cable.FLEXIBLE_3X15, 2, 1);
+    Line line2 = new Line("37A", Purpose.LIGHTS, "Hodnik", Cable.FLEXIBLE_3X15, 5, 2);
+    Line line3 = new Line("14", Purpose.LIGHTS, "Hodnik", Cable.FLEXIBLE_3X15, 2, 1);
+    lines.add(line);
+    lines.add(line2);
+    lines.add(line3);
+    assertEquals(9,computer.sumAllBuilding(lines));
+  }
+  @Test
+  void updateLineTest(){
+    Line line = new Line("32A", Purpose.LIGHTS, "Hodnik", Cable.FLEXIBLE_3X15, 2, 1);
+    Line line2 = new Line("32A", Purpose.LIGHTS, "Hodnik", Cable.FLEXIBLE_3X15, 5, 1);
+    lines.add(line);
+    computer.updateLine(lines,line,line2);
+    assertEquals(computer.selectLine(lines,line2),line2);
+
+
+  }
+  @Test
+  void summSameCableTest(){
+    Line line = new Line("32A", Purpose.LIGHTS, "Hodnik", Cable.FLEXIBLE_3X15, 2, 1);
+    Line line2 = new Line("37A", Purpose.LIGHTS, "Hodnik", Cable.FLEXIBLE_3X25, 5, 2);
+    Line line3 = new Line("14", Purpose.OUTLET, "Hodnik", Cable.FLEXIBLE_3X15, 5, 3);
+    lines.add(line);
+    lines.add(line2);
+    lines.add(line3);
+    assertEquals(7,computer.sumSameCable(lines,Cable.FLEXIBLE_3X15));
   }
 
   @Test
   void illegalEntryTest() {
-    Cable cable=Cable.FLEXIBLE_3X15;
-    Purpose purpose=null;
-    Line line5 = new Line("30", purpose,"", cable, -1, 1);
-    Exception e = assertThrows(IllegalArgumentException.class, () ->
-      lines.add(line5)
-    );
-    assertEquals("Invalid Lineamount: -1", e.getMessage());
+    Cable cable = Cable.FLEXIBLE_3X15;
+    Purpose purpose = Purpose.LIGHTS;
+    Line invalidLine=new Line("a",purpose,"no note",cable,-8,2);
+
+
+    Exception e = assertThrows(IllegalArgumentException.class, () -> {
+      computer.addToLines(lines,invalidLine);
+    });
+    assertEquals("Invalid line", e.getMessage());
+
 
 
   }
-
 
 
 }

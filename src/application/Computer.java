@@ -21,18 +21,29 @@ public class Computer implements Controller {
 
   @Override
   public boolean isItValidLine(String lineName, Cable cable, int amount) {
-    return !(lineName==null || cable.equals(null) || amount<=0);
+    return (lineName==null || cable.equals(null) || amount<0);
+  }
+  public int seeLine(Collection<Line> lines, Line line){
+    return line.getAmount();
   }
 
   @Override
   public void addToLines(Collection<Line> lines, Line line) {
+    if (isItValidLine(line.getLineName(),line.getCable(),line.getAmount())){
+      throw new IllegalArgumentException("Invalid line");
+    }
 
-    if (lines.stream().anyMatch(line1 -> line1.getLineName().equals(line.getLineName()))) {
-      lines.stream().filter(line1 -> line1.getLineName().equals(line.getLineName()) && line1.getFloor() == line.getFloor()).map(Line::getAmount).reduce((a, b) -> a + b);
 
+    else if (lines.stream().anyMatch(line1 -> line1.getLineName().equals(line.getLineName()))) {
+      lines.stream().filter(line1 -> line1.getLineName().equals(line.getLineName()) && line1.getFloor() == line.getFloor()).findAny().ifPresent(line1 -> line1.setAmount(line1.getAmount()+line.getAmount()));
+      System.out.println("dodano na postojecu");
     }
     else
       lines.add(line);
+    System.out.println("added to lines");
+  }
+  public void trow(){
+    throw new IllegalArgumentException("Text");
   }
 
 
@@ -67,8 +78,11 @@ public class Computer implements Controller {
       new IllegalArgumentException("No entries");
     }
     else {
-      sum = lines.stream().filter(line -> line.getFloor()==floor).map(Line::getAmount).reduce(sum, (a, b) -> a + b);
-      System.out.println("Sabralo"+sum+ lines.toString());
+      sum = lines.stream()
+          .filter(line -> line.getFloor()==floor)
+          .map(Line::getAmount)
+          .reduce(sum, (a, b) -> a + b);
+
 
 
     }
