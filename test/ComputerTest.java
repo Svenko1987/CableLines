@@ -45,9 +45,11 @@ class ComputerTest {
   void sumSameLineTest(){
     Line line = new Line("32A", Purpose.LIGHTS, "Hodnik", Cable.FLEXIBLE_3X15, 2, 1);
     Line line2 = new Line("32A", Purpose.LIGHTS, "Hodnik", Cable.FLEXIBLE_3X15, 5, 1);
-    lines.add(line);
-    lines.add(line2);
-    assertEquals(4,computer.seeLine(lines,line));
+    computer.addToLines(lines,line);
+    computer.addToLines(lines,line2);
+
+
+    assertEquals(7,computer.selectLine(lines,line).getAmount());
 
 
   }
@@ -72,7 +74,7 @@ class ComputerTest {
     Line line2 = new Line("32A", Purpose.LIGHTS, "Hodnik", Cable.FLEXIBLE_3X15, 5, 1);
     lines.add(line);
     computer.updateLine(lines,line,line2);
-    assertEquals(computer.selectLine(lines,line2),line2);
+    assertEquals(computer.selectLine(lines,line).getAmount(),line2.getAmount());
 
 
   }
