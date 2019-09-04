@@ -8,7 +8,7 @@ public enum Purpose {
   DATAFLOW("Data flow"),
   VENTILATION("Ventilation"),
   CONNECTION("Connection"),
-  POWERSUPLY("Pover suply"),
+  POWERSUPPLY("Power supply"),
   VIDEOSURVEILLANCE("Video surveillance");
 
 

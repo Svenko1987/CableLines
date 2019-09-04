@@ -54,7 +54,7 @@ class ComputerTest {
 
   }
   @Test
-  void deleteLineTest(){
+  void removeLineTest(){
 
   }
   @Test
