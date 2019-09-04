@@ -1,6 +1,8 @@
 package data;
 
 
+import application.Computer;
+
 /**
  * Object Line that represents line on some floor that have some purpose
  */
@@ -20,7 +22,7 @@ public class Line {
    * @param amount
    * @param floor
    */
-  public Line(String lineName, Purpose linePurpose, String lineNote, Cable cable, int amount, int floor) {
+  public Line(String lineName, Purpose linePurpose, String lineNote, Cable cable, int amount, int floor) throws IllegalArgumentException {
 
       this.lineName = lineName;
       this.linePurpose = linePurpose;
@@ -29,9 +31,20 @@ public class Line {
       this.amount = amount;
       this.floor = floor;
 
+    /*
+    * Fora kako da svaki line koji napraviš automatski dodaš u listu.
+    *
+    * */
+    if (this.isValid()) {
+      Computer.getAllLines().add(this);
+    }
+    else {
+      throw new IllegalArgumentException();
+    }
+  }
 
-
-
+  private boolean isValid() {
+    return amount > -1;
   }
 
 

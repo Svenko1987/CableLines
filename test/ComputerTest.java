@@ -4,6 +4,7 @@ import data.Cable;
 import data.Line;
 import data.Purpose;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -29,6 +30,23 @@ class ComputerTest {
     lines = new ArrayList<>();
   }
 
+  @DisplayName("Zajebani test sa sopstvenim nazivom")
+  @Test
+  void duplicateLinesEqualityTest() {
+    Line lineOne = new Line("A", Purpose.VIDEO_SURVEILLANCE, "", Cable.COMMUNICATION_CAT6, 100, -1);
+    Line lineTwo = new Line("A", Purpose.VIDEO_SURVEILLANCE, "", Cable.COMMUNICATION_CAT6, 100, -1);
+
+    assertEquals(lineOne, lineTwo, "Identične linije nisu equal.");
+  }
+
+  @SuppressWarnings ("ResultOfObjectAllocationIgnored")
+  @Test
+  void failFastTest() {
+    assertThrows(IllegalArgumentException.class, () -> new Line("", Purpose.LIGHTS, "", Cable.FLEXIBLE_3X15, -15, 0));
+    new Line("VALID", Purpose.LIGHTS, "", Cable.FLEXIBLE_3X15, 15, 0);
+    assertEquals(1, Computer.getAllLines().size());
+  }
+
   @Test
   void sumSameFloorTest() {
 
@@ -39,7 +57,7 @@ class ComputerTest {
     lines.add(line2);
     lines.add(line3);
     assertEquals(4,computer.sumSameFloor(lines,1));
-
+    // todo Svenko1987 : šta testiramo ovdje? zašto 4 na istom spratu kad su 2 dodata stavi u javadoc
   }
   @Test
   void sumSameLineTest(){
