@@ -9,7 +9,7 @@ public enum Purpose {
   VENTILATION("Ventilation"),
   CONNECTION("Connection"),
   POWERSUPPLY("Power supply"),
-  VIDEOSURVEILLANCE("Video surveillance");
+  VIDEO_SURVEILLANCE("Video surveillance"); // todo Svenko1987: po konvenciji, enume tretiraš kao public static, znači velikim slovima i sa _ između riječi
 
 
   private final String name;

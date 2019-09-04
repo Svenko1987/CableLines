@@ -4,6 +4,8 @@ import data.Cable;
 import data.Line;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Class for methods that use Line and Cable objects
@@ -12,6 +14,11 @@ import java.util.Collection;
 
 public class Computer implements Controller {
 
+  private static Set<Line> ALL_LINES = new HashSet<>();
+
+  public static Set<Line> getAllLines() {
+    return ALL_LINES;
+  }
 
   /**
    * Line manipulation
