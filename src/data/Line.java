@@ -1,10 +1,13 @@
 package data;
 
 
+
+import java.io.Serializable;
+
 /**
  * Object Line that represents line on some floor that have some purpose
  */
-public class Line {
+public class Line implements Serializable {
   private String lineName;
   private Purpose linePurpose;
   private String lineNote;
@@ -17,8 +20,8 @@ public class Line {
    * @param lineName    ovo možda ostaviti i opcionalno kao @Nullable
    * @param linePurpose ovo kao enum ti olakšava život jer ne radiš sa stringovima nego sa jednim stringom kojeg niko ne može dirati
    * @param cable       još jedna prednost enuma je što možeš u enumu da čuvaš nepromjenjive, a možeš pozvati i "daj sve ovog tipa što postoji", to će olakšati GUI
-   * @param amount
-   * @param floor
+   * @param amount    kolicina
+   * @param floor   etaza
    */
   public Line(String lineName, Purpose linePurpose, String lineNote, Cable cable, int amount, int floor) {
 
@@ -34,22 +37,6 @@ public class Line {
 
   }
 
-
-/*
-  @Override
-  public boolean equals(Object obj) {
-    // todo Svenko1987 : ovdje TI definiši kad su dvije linije jednake
-    if (obj == null) return false;
-
-    if (obj instanceof Line) {
-      Line other = (Line) obj;
-      // sad radiš sa other
-      return false;
-    } else {
-      return false;
-    }
-  }
-*/
 
   public Purpose getLinePurpose() {
     return linePurpose;
@@ -67,6 +54,7 @@ public class Line {
       return false;
     }
   }
+
 
   public void setPurpose(Purpose linePurpose) {
     this.linePurpose = linePurpose;
@@ -103,4 +91,5 @@ public class Line {
   public void setFloor(int floor) {
     this.floor = floor;
   }
+
 }

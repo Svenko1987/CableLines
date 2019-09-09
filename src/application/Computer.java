@@ -3,6 +3,9 @@ package application;
 import data.Cable;
 import data.Line;
 
+
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -84,6 +87,43 @@ public class Computer implements Controller {
       System.out.println("invalid line");
   }
 
+  @Override
+  public void saveLines(Collection<Line> lines, String location) {
+    try {
+      FileOutputStream fos = new FileOutputStream(location);
+      ObjectOutputStream oos= new ObjectOutputStream(fos);
+      oos.writeObject(lines);
+      oos.close();
+      fos.close();
+      System.out.println("Saved to "+location);
+    }catch (IOException i) {
+      i.printStackTrace();
+    }
+  }
+
+  @Override
+  public Collection<Line> loadLines(String location) {
+    Collection<Line> lines=new ArrayList<>();
+    try {
+      FileInputStream fis= new FileInputStream(location);
+      ObjectInputStream ois= new ObjectInputStream(fis);
+      lines= (Collection<Line>) ois.readObject();
+      ois.close();
+      fis.close();
+      System.out.println("Loaded from "+location);
+
+    }catch (IOException i){
+      i.printStackTrace();
+
+    }catch (ClassNotFoundException c){
+      c.printStackTrace();
+
+    }
+      return lines;
+
+
+  }
+
   /**
    * Getting sums of wanted type
    */
@@ -92,7 +132,7 @@ public class Computer implements Controller {
   public int sumSameFloor(Collection<Line> lines, int floor) {
     if (lines.isEmpty() || lines.stream().noneMatch(line -> line.getFloor() != floor)) return 0;
     int sum = 0;
-    if (lines.isEmpty() == true) {
+    if (lines.isEmpty()) {
       new IllegalArgumentException("No entries");
     }
     else {
@@ -108,7 +148,7 @@ public class Computer implements Controller {
   @Override
   public int sumSameCable(Collection<Line> lines, Cable cable) {
     int sum = 0;
-    if (lines.isEmpty() == true) {
+    if (lines.isEmpty()) {
       throw new IllegalArgumentException("No entries");
     }
     else {
@@ -123,7 +163,7 @@ public class Computer implements Controller {
   @Override
   public int sumAllBuilding(Collection<Line> lines) {
     int sum = 0;
-    if (lines.isEmpty() == true) {
+    if (lines.isEmpty()) {
       throw new IllegalArgumentException("No entries");
     }
     else {
